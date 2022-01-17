@@ -26,17 +26,67 @@ public class Ofertante extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jbtnPublicarEmpleo = new javax.swing.JButton();
+        jbtnMostrarEmpleos = new javax.swing.JButton();
+        jbtnEliminarEmpleo = new javax.swing.JButton();
+        jbtnModificarEmpleo = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jbtnPublicarEmpleo.setText("Publicar Empleo");
+
+        jbtnMostrarEmpleos.setText("Mostrar mis Empleos");
+
+        jbtnEliminarEmpleo.setText("Eliminar un Empleo");
+
+        jbtnModificarEmpleo.setText("Modificar un Empleo");
+
+        jButton5.setText("Preferencias");
+
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel1.setText("Empleos Publicados ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1150, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton5)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnModificarEmpleo)
+                    .addComponent(jbtnEliminarEmpleo)
+                    .addComponent(jbtnMostrarEmpleos)
+                    .addComponent(jbtnPublicarEmpleo))
+                .addGap(54, 54, 54))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 554, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jbtnPublicarEmpleo)
+                        .addGap(38, 38, 38)
+                        .addComponent(jbtnMostrarEmpleos)
+                        .addGap(51, 51, 51)
+                        .addComponent(jbtnEliminarEmpleo)
+                        .addGap(50, 50, 50)
+                        .addComponent(jbtnModificarEmpleo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton5)
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -78,5 +128,12 @@ public class Ofertante extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbtnEliminarEmpleo;
+    private javax.swing.JButton jbtnModificarEmpleo;
+    private javax.swing.JButton jbtnMostrarEmpleos;
+    private javax.swing.JButton jbtnPublicarEmpleo;
     // End of variables declaration//GEN-END:variables
 }
