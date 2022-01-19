@@ -159,7 +159,7 @@ public class GestorEmpleos {
                 return false;
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Ingrese la Cédula a Eliminar");
+            JOptionPane.showMessageDialog(this, "Ingrese la Identificacion a Modificar");
             return false;
         }
     }
