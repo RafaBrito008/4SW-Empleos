@@ -12,6 +12,7 @@ public class Empleo {
 
     private String nombreEmpleo;
     private String descripcion;
+    private String estado;
     private String dificultad;
 
     public String getNombreEmpleo() {
@@ -28,6 +29,14 @@ public class Empleo {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getDificultad() {

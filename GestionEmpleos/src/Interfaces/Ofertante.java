@@ -4,6 +4,9 @@
  */
 package Interfaces;
 
+import gestores.GestorEmpleos;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author sebas
@@ -15,6 +18,13 @@ public class Ofertante extends javax.swing.JFrame {
      */
     public Ofertante() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        cargarDatosEmpleos();
+    }
+
+    private void cargarDatosEmpleos() {
+        DefaultTableModel modeloTabla = GestorEmpleos.mostrarEmpleos("1801");
+        jtblEmpleos.setModel(modeloTabla);
     }
 
     /**
@@ -27,27 +37,43 @@ public class Ofertante extends javax.swing.JFrame {
     private void initComponents() {
 
         jbtnPublicarEmpleo = new javax.swing.JButton();
-        jbtnMostrarEmpleos = new javax.swing.JButton();
         jbtnEliminarEmpleo = new javax.swing.JButton();
         jbtnModificarEmpleo = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jbtnPreferencias = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtblEmpleos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jbtnPublicarEmpleo.setText("Publicar Empleo");
-
-        jbtnMostrarEmpleos.setText("Mostrar mis Empleos");
+        jbtnPublicarEmpleo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnPublicarEmpleoActionPerformed(evt);
+            }
+        });
 
         jbtnEliminarEmpleo.setText("Eliminar un Empleo");
 
         jbtnModificarEmpleo.setText("Modificar un Empleo");
 
-        jButton5.setText("Preferencias");
+        jbtnPreferencias.setText("Preferencias");
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel1.setText("Empleos Publicados ");
+
+        jtblEmpleos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jtblEmpleos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,42 +81,46 @@ public class Ofertante extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbtnPreferencias))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtnModificarEmpleo)
+                    .addComponent(jbtnPublicarEmpleo)
                     .addComponent(jbtnEliminarEmpleo)
-                    .addComponent(jbtnMostrarEmpleos)
-                    .addComponent(jbtnPublicarEmpleo))
-                .addGap(54, 54, 54))
+                    .addComponent(jbtnModificarEmpleo))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                .addContainerGap(55, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnPreferencias, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jbtnPublicarEmpleo)
-                        .addGap(38, 38, 38)
-                        .addComponent(jbtnMostrarEmpleos)
-                        .addGap(51, 51, 51)
+                        .addGap(18, 18, 18)
                         .addComponent(jbtnEliminarEmpleo)
-                        .addGap(50, 50, 50)
-                        .addComponent(jbtnModificarEmpleo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton5)
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jbtnModificarEmpleo)
+                        .addGap(21, 21, 21))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbtnPublicarEmpleoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPublicarEmpleoActionPerformed
+        // TODO add your handling code here:
+        GestorEmpleos.insertarEmpleo();
+    }//GEN-LAST:event_jbtnPublicarEmpleoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,12 +158,12 @@ public class Ofertante extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtnEliminarEmpleo;
     private javax.swing.JButton jbtnModificarEmpleo;
-    private javax.swing.JButton jbtnMostrarEmpleos;
+    private javax.swing.JButton jbtnPreferencias;
     private javax.swing.JButton jbtnPublicarEmpleo;
+    private javax.swing.JTable jtblEmpleos;
     // End of variables declaration//GEN-END:variables
 }
