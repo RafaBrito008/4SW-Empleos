@@ -52,7 +52,7 @@ public class GestorOfertantes {
             return null;
         }
     }
-
+/*
     public boolean insertarOfertantes() {
         try {
             Connection conexion = csql.conectar();
@@ -147,5 +147,5 @@ public class GestorOfertantes {
             return false;
         }
     }
-
+*/
 }

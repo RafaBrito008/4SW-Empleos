@@ -56,7 +56,7 @@ public class GestorEmpleos {
             return null;
         }
     }
-
+/*
     public static boolean insertarEmpleo() {
         try {
             Connection conexion = csql.conectar();
@@ -163,5 +163,5 @@ public class GestorEmpleos {
             return false;
         }
     }
-
+*/
 }

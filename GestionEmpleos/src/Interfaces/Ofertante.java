@@ -119,7 +119,7 @@ public class Ofertante extends javax.swing.JFrame {
 
     private void jbtnPublicarEmpleoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPublicarEmpleoActionPerformed
         // TODO add your handling code here:
-        GestorEmpleos.insertarEmpleo();
+        //GestorEmpleos.insertarEmpleo();
     }//GEN-LAST:event_jbtnPublicarEmpleoActionPerformed
 
     /**
