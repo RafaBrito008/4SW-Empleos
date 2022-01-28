@@ -28,16 +28,16 @@ public class GestorEmpleos {
 
         try {
             String[] titulos = {"IDENTIFICACION", "NOMBRE",
-                "DESCRIPCION", "MINIMO A PAGAR", "MAXIMO A PAGAR", "ESTADO"};
+                "DESCRIPCION", "MINIMO A PAGAR", "MAXIMO A PAGAR", "ESTADO", "OFERTANTE", "TRABAJADOR"};
             modeloTabla = new DefaultTableModel(null, titulos);
 
-            String[] registros = new String[7];
+            String[] registros = new String[8];
             Connection connection = csql.conectar();
             
             JOptionPane.showMessageDialog(null, cedula);
 
             if (connection != null) {
-                String sql = "SELECT * FROM EMPLEOS_DISPONIBLES WHERE ID_OFE_EMP = '" + cedula + "'";
+                String sql = "SELECT * FROM empleos_disponibles WHERE ID_OFE_EMP='" + cedula + "'";
                 Statement psd = connection.prepareStatement(sql);
                 ResultSet rs = psd.executeQuery(sql);
 
