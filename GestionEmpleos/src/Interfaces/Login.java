@@ -50,10 +50,7 @@ public class Login extends javax.swing.JFrame {
             Statement stOfer = cn.createStatement();
             ResultSet rsOfer = stOfer.executeQuery(sqlOfer);
 
-<<<<<<< HEAD
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-=======
+
             Statement stCli = cn.createStatement();
             ResultSet rsCli = stCli.executeQuery(sqlCli);
 
@@ -65,18 +62,16 @@ public class Login extends javax.swing.JFrame {
                     ced_login = rsOfer.getString("CED_USU");
                 }
             }
->>>>>>> d6b40ff6cece6a571bba01dcace9810dcd7cd5fb
 
             if (rsCli.next()) {
                 ingreso = true;
-<<<<<<< HEAD
+
                 JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso");
-                while (rs.next()) {
-                    ced_login = rs.getString("CED_USU");
+                while (rsCli.next()) {
+                    ced_login = rsCli.getString("CED_USU");
                 }
-=======
+
                 JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
->>>>>>> d6b40ff6cece6a571bba01dcace9810dcd7cd5fb
                 this.dispose();
                 while (rsOfer.next()) {
                     ced_login = rsOfer.getString("CED_USU");
