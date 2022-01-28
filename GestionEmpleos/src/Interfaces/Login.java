@@ -56,8 +56,9 @@ public class Login extends javax.swing.JFrame {
             if (rsOfer.next()) {
                 ingreso = true;
                 JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
+                Ofertante of = new Ofertante();
+                of.setVisible(true);
                 this.dispose();
-
                 ced_login = rsOfer.getString("CED_USU");
 
             }

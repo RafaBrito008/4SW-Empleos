@@ -38,6 +38,7 @@ public class Empleos extends javax.swing.JFrame {
         cargarTablaEmpleosCliente();
         obtenerIdEmpleoACancelar();
         bloquearBotones();
+        this.setLocationRelativeTo(null);
     }
 
     public void cargarTablaEmpleosDisponibles() {
