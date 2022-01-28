@@ -19,7 +19,7 @@ import sql.ConexionSQL;
  */
 public class Login extends javax.swing.JFrame {
 
-    String ced_login;
+    public static String ced_login;
 
     /**
      * Creates new form login
@@ -50,7 +50,10 @@ public class Login extends javax.swing.JFrame {
             Statement stOfer = cn.createStatement();
             ResultSet rsOfer = stOfer.executeQuery(sqlOfer);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 833e4b32b260654e593ba71ecc895d4ff49363b0
             Statement stCli = cn.createStatement();
             ResultSet rsCli = stCli.executeQuery(sqlCli);
 
@@ -58,20 +61,31 @@ public class Login extends javax.swing.JFrame {
                 ingreso = true;
                 JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
                 this.dispose();
-                while (rsOfer.next()) {
+                
                     ced_login = rsOfer.getString("CED_USU");
-                }
+                
             }
 
             if (rsCli.next()) {
                 ingreso = true;
 
+<<<<<<< HEAD
                 JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso");
                 while (rsCli.next()) {
                     ced_login = rsCli.getString("CED_USU");
                 }
 
                 JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
+=======
+                
+                    ced_login = rsCli.getString("CED_USU");
+                
+                Empleos e =new Empleos();
+                e.setVisible(true);
+                JOptionPane.showMessageDialog(rootPane, ced_login);
+                JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
+
+>>>>>>> 833e4b32b260654e593ba71ecc895d4ff49363b0
                 this.dispose();
                 while (rsOfer.next()) {
                     ced_login = rsOfer.getString("CED_USU");

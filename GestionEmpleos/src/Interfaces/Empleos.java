@@ -78,6 +78,7 @@ public class Empleos extends javax.swing.JFrame {
             Connection cn = cc.conectar();
             String sql = "";
             sql = "select * from empleos_disponibles where CED_CLI_EMP='"+ced_usu_login+"'";
+            JOptionPane.showMessageDialog(null, ced_usu_login);
             Statement psd = cn.createStatement();
             ResultSet rs = psd.executeQuery(sql);
             while (rs.next()) {
@@ -103,7 +104,7 @@ public class Empleos extends javax.swing.JFrame {
             ConexionSQL cc = new ConexionSQL();//conexion
             Connection cn = cc.conectar();
             String sql = "";
-            sql = "update empleos_disponibles set EST_EMP='NO DISPONIBLE' where ID_EMP='" + id_empleo + "'";//sentencia sql
+            sql = "update empleos_disponibles set EST_EMP='NO DISPONIBLE',CED_CLI_EMP='"+ced_usu_login+"' where ID_EMP='" + id_empleo + "'";//sentencia sql
             PreparedStatement psd = cn.prepareStatement(sql);//preparar sentencia
             //System.out.println(psd.executeUpdate());
             int n = psd.executeUpdate();
@@ -111,6 +112,7 @@ public class Empleos extends javax.swing.JFrame {
             if (n > 0) {
             JOptionPane.showMessageDialog(this, "HA ACEPTADO ESTE EMPLEO");
             cargarTablaEmpleosDisponibles();
+            cargarTablaEmpleosCliente();
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -149,7 +151,7 @@ public class Empleos extends javax.swing.JFrame {
             ConexionSQL cc = new ConexionSQL();//conexion
             Connection cn = cc.conectar();
             String sql = "";
-            sql = "update empleos_disponibles set EST_EMP='DISPONIBLE' where ID_EMP='" + id_empleoCancelado + "'";//sentencia sql
+            sql = "update empleos_disponibles set EST_EMP='DISPONIBLE', CED_CLI_EMP='NULL' where ID_EMP='" + id_empleoCancelado + "'";//sentencia sql
             PreparedStatement psd = cn.prepareStatement(sql);//preparar sentencia
             //System.out.println(psd.executeUpdate());
             int n = psd.executeUpdate();
