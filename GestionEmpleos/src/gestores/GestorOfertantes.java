@@ -23,35 +23,35 @@ public class GestorOfertantes {
     private static DefaultTableModel modeloTabla;
     private static ConexionSQL csql = new ConexionSQL();
 
-    public static DefaultTableModel mostrarOfertantes() {
-        try {
-
-            String[] titulos = {"IDENTIFICACION", "NOMBRE",
-                "APELLIDO"};
-            modeloTabla = new DefaultTableModel(null, titulos);
-
-            String[] registros = new String[3];
-            Connection connection = csql.conectar();
-
-            if (connection != null) {
-                String sql = "SELECT * FROM OFERTANTES WHERE ID_OFE_PER";
-                Statement psd = connection.prepareStatement(sql);
-                ResultSet rs = psd.executeQuery(sql);
-
-                while (rs.next()) {
-                    registros[0] = rs.getString("ID_OFE");
-                    registros[1] = rs.getString("NOM_OFE");
-                    registros[2] = rs.getString("APE_OFE");
-                    modeloTabla.addRow(registros);
-                }
-                return modeloTabla;
-            }
-            return null;
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error: " + ex);
-            return null;
-        }
-    }
+//    public static DefaultTableModel mostrarOfertantes() {
+//        try {
+//
+//            String[] titulos = {"IDENTIFICACION", "NOMBRE",
+//                "APELLIDO"};
+//            modeloTabla = new DefaultTableModel(null, titulos);
+//
+//            String[] registros = new String[3];
+//            Connection connection = csql.conectar();
+//
+//            if (connection != null) {
+//                String sql = "SELECT * FROM USUARIOS WHERE ID_USU";
+//                Statement psd = connection.prepareStatement(sql);
+//                ResultSet rs = psd.executeQuery(sql);
+//
+//                while (rs.next()) {
+//                    registros[0] = rs.getString("ID_OFE");
+//                    registros[1] = rs.getString("NOM_OFE");
+//                    registros[2] = rs.getString("APE_OFE");
+//                    modeloTabla.addRow(registros);
+//                }
+//                return modeloTabla;
+//            }
+//            return null;
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Error: " + ex);
+//            return null;
+//        }
+//    }
 /*
     public boolean insertarOfertantes() {
         try {
