@@ -24,6 +24,8 @@ public class Empleos extends javax.swing.JFrame {
     DefaultTableModel modelo = new DefaultTableModel();
     Integer fila;
     public String id_empleo,id_empleoCancelado;
+    
+    String ced_usu_login;
     /**
      * Creates new form Empleos
      */
@@ -66,6 +68,8 @@ public class Empleos extends javax.swing.JFrame {
     }
     
     public void cargarTablaEmpleosCliente() {
+        Login g = new Login();
+        ced_usu_login=g.ced_login;
         try {
             String[] titulos = {"Id", "Nombre", "Descripcion", "Precio Min.", "Precio Max.","Estado"};
             String[] registros = new String[6];
@@ -73,7 +77,7 @@ public class Empleos extends javax.swing.JFrame {
             ConexionSQL cc = new ConexionSQL();
             Connection cn = cc.conectar();
             String sql = "";
-            sql = "select * from empleos_disponibles where CED_CLI_EMP='1805541966'";
+            sql = "select * from empleos_disponibles where CED_CLI_EMP='"+ced_usu_login+"'";
             Statement psd = cn.createStatement();
             ResultSet rs = psd.executeQuery(sql);
             while (rs.next()) {

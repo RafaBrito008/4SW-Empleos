@@ -18,7 +18,7 @@ import sql.ConexionSQL;
  * @author Rafa Brito
  */
 public class Login extends javax.swing.JFrame {
-
+    String ced_login;
     /**
      * Creates new form login
      */
@@ -35,14 +35,16 @@ public class Login extends javax.swing.JFrame {
             String username = jtxtId.getText();
             String password = jtxtPassword.getText();
 
-            String sql = "SELECT USERNAME_USU, (aes_decrypt(PASSWORD_USU, 'AES')) FROM usuarios "
+            String sql = "SELECT CED_USU, USERNAME_USU, (aes_decrypt(PASSWORD_USU, 'AES')) FROM usuarios "
                     + "WHERE USERNAME_USU = '" + username + "' "
                     + "AND (aes_decrypt(PASSWORD_USU, 'AES')) = '" + password + "'";
 
 
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-
+            while (rs.next()) {
+                ced_login=rs.getString("CED_USU");
+            }
 
             if (rs.next()) {
                 ingreso = true;
