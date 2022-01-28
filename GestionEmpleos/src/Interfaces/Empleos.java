@@ -21,11 +21,13 @@ import sql.ConexionSQL;
  * @author denni
  */
 public class Empleos extends javax.swing.JFrame {
+
     DefaultTableModel modelo = new DefaultTableModel();
     Integer fila;
-    public String id_empleo,id_empleoCancelado;
-    
+    public String id_empleo, id_empleoCancelado;
+
     String ced_usu_login;
+
     /**
      * Creates new form Empleos
      */
@@ -37,10 +39,10 @@ public class Empleos extends javax.swing.JFrame {
         obtenerIdEmpleoACancelar();
         bloquearBotones();
     }
-    
+
     public void cargarTablaEmpleosDisponibles() {
         try {
-            String[] titulos = {"Id", "Nombre", "Descripcion", "Precio Min.", "Precio Max.","Estado"};
+            String[] titulos = {"Id", "Nombre", "Descripcion", "Precio Min.", "Precio Max.", "Estado"};
             String[] registros = new String[6];
             modelo = new DefaultTableModel(null, titulos);
             ConexionSQL cc = new ConexionSQL();
@@ -59,26 +61,24 @@ public class Empleos extends javax.swing.JFrame {
                 modelo.addRow(registros);
             }
             jtblEmpleos.setModel(modelo);
-            
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
 
     }
-    
+
     public void cargarTablaEmpleosCliente() {
         Login g = new Login();
-        ced_usu_login=g.ced_login;
+        ced_usu_login = g.ced_login;
         try {
-            String[] titulos = {"Id", "Nombre", "Descripcion", "Precio Min.", "Precio Max.","Estado"};
+            String[] titulos = {"Id", "Nombre", "Descripcion", "Precio Min.", "Precio Max.", "Estado"};
             String[] registros = new String[6];
             modelo = new DefaultTableModel(null, titulos);
             ConexionSQL cc = new ConexionSQL();
             Connection cn = cc.conectar();
             String sql = "";
-            sql = "select * from empleos_disponibles where CED_CLI_EMP='"+ced_usu_login+"'";
-            JOptionPane.showMessageDialog(null, ced_usu_login);
+            sql = "select * from empleos_disponibles where CED_CLI_EMP='" + ced_usu_login + "'";
             Statement psd = cn.createStatement();
             ResultSet rs = psd.executeQuery(sql);
             while (rs.next()) {
@@ -91,60 +91,62 @@ public class Empleos extends javax.swing.JFrame {
                 modelo.addRow(registros);
             }
             jtblMisEmpleos.setModel(modelo);
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
 
     }
-    
+
     public void editar() {
         try {
             // TODO add your handling code here:
             ConexionSQL cc = new ConexionSQL();//conexion
             Connection cn = cc.conectar();
             String sql = "";
-            sql = "update empleos_disponibles set EST_EMP='NO DISPONIBLE',CED_CLI_EMP='"+ced_usu_login+"' where ID_EMP='" + id_empleo + "'";//sentencia sql
+            sql = "update empleos_disponibles set EST_EMP='NO DISPONIBLE',CED_CLI_EMP='" + ced_usu_login + "' where ID_EMP='" + id_empleo + "'";//sentencia sql
             PreparedStatement psd = cn.prepareStatement(sql);//preparar sentencia
             //System.out.println(psd.executeUpdate());
             int n = psd.executeUpdate();
-            
+
             if (n > 0) {
-            JOptionPane.showMessageDialog(this, "HA ACEPTADO ESTE EMPLEO");
-            cargarTablaEmpleosDisponibles();
-            cargarTablaEmpleosCliente();
+                JOptionPane.showMessageDialog(this, "HA ACEPTADO ESTE EMPLEO");
+                cargarTablaEmpleosDisponibles();
+                cargarTablaEmpleosCliente();
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-    public void obtenerIdEmpleo(){
+
+    public void obtenerIdEmpleo() {
         jtblEmpleos.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
-            public void valueChanged(ListSelectionEvent e) {           
-                 if (jtblEmpleos.getSelectedRow() != -1) {
+            public void valueChanged(ListSelectionEvent e) {
+                if (jtblEmpleos.getSelectedRow() != -1) {
                     fila = jtblEmpleos.getSelectedRow();
-                    id_empleo= jtblEmpleos.getValueAt(fila, 0).toString();
-                    jbtnAceptarEmpleo.setEnabled(true);                   
+                    id_empleo = jtblEmpleos.getValueAt(fila, 0).toString();
+                    jbtnAceptarEmpleo.setEnabled(true);
                     jbtnCancelarEmpleo.setEnabled(false);
                 }
             }
         });
     }
-    
-    public void obtenerIdEmpleoACancelar(){
+
+    public void obtenerIdEmpleoACancelar() {
         jtblMisEmpleos.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
-            public void valueChanged(ListSelectionEvent e) {           
-                 if (jtblMisEmpleos.getSelectedRow() != -1) {
+            public void valueChanged(ListSelectionEvent e) {
+                if (jtblMisEmpleos.getSelectedRow() != -1) {
                     fila = jtblMisEmpleos.getSelectedRow();
-                    id_empleoCancelado= jtblMisEmpleos.getValueAt(fila, 0).toString();     
-                    jbtnAceptarEmpleo.setEnabled(false);                   
+                    id_empleoCancelado = jtblMisEmpleos.getValueAt(fila, 0).toString();
+                    jbtnAceptarEmpleo.setEnabled(false);
                     jbtnCancelarEmpleo.setEnabled(true);
                 }
             }
         });
     }
+
     public void cancelarEmpleo() {
         try {
             // TODO add your handling code here:
@@ -155,23 +157,21 @@ public class Empleos extends javax.swing.JFrame {
             PreparedStatement psd = cn.prepareStatement(sql);//preparar sentencia
             //System.out.println(psd.executeUpdate());
             int n = psd.executeUpdate();
-            
+
             if (n > 0) {
-            JOptionPane.showMessageDialog(this, "HA CANCELADO ESTE EMPLEO");
-            cargarTablaEmpleosDisponibles();
-            cargarTablaEmpleosCliente();
+                JOptionPane.showMessageDialog(this, "HA CANCELADO ESTE EMPLEO");
+                cargarTablaEmpleosDisponibles();
+                cargarTablaEmpleosCliente();
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-    
+
     public void bloquearBotones() {
         jbtnAceptarEmpleo.setEnabled(false);
         jbtnCancelarEmpleo.setEnabled(false);
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
