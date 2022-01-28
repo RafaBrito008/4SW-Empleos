@@ -37,20 +37,50 @@ public class Login extends javax.swing.JFrame {
             String username = jtxtId.getText();
             String password = jtxtPassword.getText();
 
-            String sql = "SELECT CED_USU, USERNAME_USU, (aes_decrypt(PASSWORD_USU, 'AES')) FROM usuarios "
+            String sqlOfer = "SELECT CED_USU, USERNAME_USU, (aes_decrypt(PASSWORD_USU, 'AES')), TIPO_USU FROM usuarios "
                     + "WHERE USERNAME_USU = '" + username + "' "
-                    + "AND (aes_decrypt(PASSWORD_USU, 'AES')) = '" + password + "'";
+                    + "AND (aes_decrypt(PASSWORD_USU, 'AES')) = '" + password + "' "
+                    + "AND TIPO_USU = 'OFERTANTE'";
 
+            String sqlCli = "SELECT CED_USU, USERNAME_USU, (aes_decrypt(PASSWORD_USU, 'AES')), TIPO_USU FROM usuarios "
+                    + "WHERE USERNAME_USU = '" + username + "' "
+                    + "AND (aes_decrypt(PASSWORD_USU, 'AES')) = '" + password + "' "
+                    + "AND TIPO_USU = 'CLIENTE'";
+
+            Statement stOfer = cn.createStatement();
+            ResultSet rsOfer = stOfer.executeQuery(sqlOfer);
+
+<<<<<<< HEAD
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
+=======
+            Statement stCli = cn.createStatement();
+            ResultSet rsCli = stCli.executeQuery(sqlCli);
 
-            if (rs.next()) {
+            if (rsOfer.next()) {
                 ingreso = true;
+                JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
+                this.dispose();
+                while (rsOfer.next()) {
+                    ced_login = rsOfer.getString("CED_USU");
+                }
+            }
+>>>>>>> d6b40ff6cece6a571bba01dcace9810dcd7cd5fb
+
+            if (rsCli.next()) {
+                ingreso = true;
+<<<<<<< HEAD
                 JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso");
                 while (rs.next()) {
                     ced_login = rs.getString("CED_USU");
                 }
+=======
+                JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
+>>>>>>> d6b40ff6cece6a571bba01dcace9810dcd7cd5fb
                 this.dispose();
+                while (rsOfer.next()) {
+                    ced_login = rsOfer.getString("CED_USU");
+                }
             }
 
         } catch (SQLException ex) {
