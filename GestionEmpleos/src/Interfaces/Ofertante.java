@@ -5,13 +5,7 @@
 package Interfaces;
 
 import gestores.GestorEmpleos;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import sql.ConexionSQL;
 
 /**
  *
@@ -19,55 +13,18 @@ import sql.ConexionSQL;
  */
 public class Ofertante extends javax.swing.JFrame {
 
-    private static DefaultTableModel modeloTabla;
-    String ced_usu_login;
-
     /**
      * Creates new form Ofertante
      */
     public Ofertante() {
         initComponents();
         this.setLocationRelativeTo(null);
-        mostrarEmpleos();
+        cargarDatosEmpleos();
     }
 
     private void cargarDatosEmpleos() {
         DefaultTableModel modeloTabla = GestorEmpleos.mostrarEmpleos("1801");
         jtblEmpleos.setModel(modeloTabla);
-    }
-
-    public void mostrarEmpleos() {
-        Login g = new Login();
-        ced_usu_login = g.ced_login;
-        try {
-            String[] titulos = {"IDENTIFICACION", "NOMBRE",
-                "DESCRIPCION", "MINIMO A PAGAR", "MAXIMO A PAGAR", "ESTADO", "OFERTANTE", "TRABAJADOR"};
-            modeloTabla = new DefaultTableModel(null, titulos);
-
-            String[] registros = new String[8];
-            ConexionSQL cc = new ConexionSQL();
-            Connection cn = cc.conectar();
-
-            String sql = "SELECT * FROM empleos_disponibles WHERE ID_OFE_EMP='" + ced_usu_login + "'";
-            Statement psd = cn.createStatement();
-            ResultSet rs = psd.executeQuery(sql);
-
-            while (rs.next()) {
-                registros[0] = rs.getString("ID_EMP");
-                registros[1] = rs.getString("NOM_EMP");
-                registros[2] = rs.getString("DES_EMP");
-                registros[3] = rs.getString("PRE_MIN_EMP");
-                registros[4] = rs.getString("PRE_MAX_EMP");
-                registros[5] = rs.getString("EST_EMP");
-                registros[6] = rs.getString("ID_OFE_EMP");
-                registros[7] = rs.getString("CED_CLI_EMP");
-                modeloTabla.addRow(registros);
-            }
-            jtblEmpleos.setModel(modeloTabla);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error: " + ex);
-
-        }
     }
 
     /**
