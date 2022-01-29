@@ -24,20 +24,17 @@ public class GestorEmpleos {
     private static DefaultTableModel modeloTabla;
 
     public static DefaultTableModel mostrarEmpleos(String cedula) {
-        JOptionPane.showMessageDialog(null, cedula);
 
         try {
             String[] titulos = {"IDENTIFICACION", "NOMBRE",
-                "DESCRIPCION", "MINIMO A PAGAR", "MAXIMO A PAGAR", "ESTADO", "OFERTANTE", "TRABAJADOR"};
+                "DESCRIPCION", "MINIMO A PAGAR", "MAXIMO A PAGAR", "ESTADO"};
             modeloTabla = new DefaultTableModel(null, titulos);
 
-            String[] registros = new String[8];
+            String[] registros = new String[7];
             Connection connection = csql.conectar();
-            
-            JOptionPane.showMessageDialog(null, cedula);
 
             if (connection != null) {
-                String sql = "SELECT * FROM empleos_disponibles WHERE ID_OFE_EMP='" + cedula + "'";
+                String sql = "SELECT * FROM EMPLEOS_DISPONIBLES WHERE ID_OFE_PER = " + cedula;
                 Statement psd = connection.prepareStatement(sql);
                 ResultSet rs = psd.executeQuery(sql);
 
@@ -48,8 +45,7 @@ public class GestorEmpleos {
                     registros[3] = rs.getString("PRE_MIN_EMP");
                     registros[4] = rs.getString("PRE_MAX_EMP");
                     registros[5] = rs.getString("EST_EMP");
-                    registros[6] = rs.getString("ID_OFE_EMP");
-                    registros[7] = rs.getString("CED_CLI_EMP");
+                    registros[6] = rs.getString("ID_OFE_PER");
                     modeloTabla.addRow(registros);
                 }
                 return modeloTabla;
