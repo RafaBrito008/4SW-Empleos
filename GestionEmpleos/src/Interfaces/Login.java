@@ -47,7 +47,7 @@ public class Login extends javax.swing.JFrame {
             String sqlCli = "SELECT CED_USU, USERNAME_USU, (aes_decrypt(PASSWORD_USU, 'AES')), TIPO_USU FROM usuarios "
                     + "WHERE USERNAME_USU = '" + username + "' "
                     + "AND (aes_decrypt(PASSWORD_USU, 'AES')) = '" + password + "' "
-                    + "AND TIPO_USU = 'CLIENTE'";
+                    + "AND TIPO_USU = 'TRABAJADOR'";
 
             Statement stOfer = cn.createStatement();
             ResultSet rsOfer = stOfer.executeQuery(sqlOfer);
@@ -65,7 +65,7 @@ public class Login extends javax.swing.JFrame {
 
                 }
 
-                if (rsOfer.next()) {
+                if (rsCli.next()) {
                     ingreso = true;
                     ced_login = rsCli.getString("CED_USU");
                     JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
