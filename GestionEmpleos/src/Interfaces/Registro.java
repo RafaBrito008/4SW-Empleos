@@ -44,11 +44,11 @@ public class Registro extends javax.swing.JFrame {
                             + "VALUES (?,?,(aes_encrypt(?, 'AES')),?,?,?)";
                     PreparedStatement psd = cn.prepareStatement(sql);
 
-                    psd.setString(1, this.jtxtCedula.getText());
-                    psd.setString(2, this.jtxtUsername.getText());
-                    psd.setString(3, this.jpswfPassword.getText());
-                    psd.setString(4, this.jtxtNombre.getText());
-                    psd.setString(5, this.jtxtApellido.getText());
+                    psd.setString(1, this.jtxtCedula.getText().toUpperCase());
+                    psd.setString(2, this.jtxtUsername.getText().toUpperCase());
+                    psd.setString(3, this.jpswfPassword.getText().toUpperCase());
+                    psd.setString(4, this.jtxtNombre.getText().toUpperCase());
+                    psd.setString(5, this.jtxtApellido.getText().toUpperCase());
                     psd.setString(6, String.valueOf(this.jcbxTipo.getSelectedItem()));
 
                     int n = psd.executeUpdate();

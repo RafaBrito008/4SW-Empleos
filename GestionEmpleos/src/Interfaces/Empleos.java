@@ -349,7 +349,7 @@ public class Empleos extends javax.swing.JFrame {
             ConexionSQL cc = new ConexionSQL();
             Connection cn = cc.conectar();
             String sql = "";
-            sql = "select * from empleos_disponibles where PRE_MIN_EMP like '%"+jtxtBusqueda.getText()+"%'";
+            sql = "select * from empleos_disponibles where DES_EMP like '%"+jtxtBusqueda.getText()+"%'";
             Statement psd = cn.createStatement();
             ResultSet rs = psd.executeQuery(sql);
             while (rs.next()) {
