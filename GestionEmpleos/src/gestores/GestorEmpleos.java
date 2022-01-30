@@ -35,7 +35,7 @@ public class GestorEmpleos {
             Connection connection = csql.conectar();
 
             if (connection != null) {
-                String sql = "SELECT * FROM EMPLEOS_DISPONIBLES WHERE ID_OFE_EMP = " + cedula;
+                String sql = "SELECT * FROM EMPLEOS_DISPONIBLES WHERE ID_OFE_EMP='" + cedula+"'";
                 Statement psd = connection.prepareStatement(sql);
                 ResultSet rs = psd.executeQuery(sql);
 
@@ -67,7 +67,7 @@ public class GestorEmpleos {
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             try {
                 Connection connection = csql.conectar();
-                String sql = "DELETE FROM EMPLEOS_DISPONIBLES WHERE ID_EMP = " + Ofertante.identificacion;
+                String sql = "DELETE FROM EMPLEOS_DISPONIBLES WHERE ID_EMP = '" + Ofertante.identificacion+"'";
                 JOptionPane.showMessageDialog(null, sql);
 
                 PreparedStatement psd = connection.prepareStatement(sql);

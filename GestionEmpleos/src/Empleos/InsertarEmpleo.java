@@ -5,6 +5,7 @@
 package Empleos;
 
 import Interfaces.Login;
+import Interfaces.Ofertante;
 import static gestores.GestorEmpleos.mostrarEmpleos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -56,7 +57,7 @@ public class InsertarEmpleo extends javax.swing.JFrame {
                     if (n > 0) {
                         JOptionPane.showMessageDialog(null, "¡Inserción Exitosa!");
                     }
-                    mostrarEmpleos(Login.ced_login);
+                    Ofertante.cargarDatosEmpleos();
                     return true;
                 }
             }

@@ -27,11 +27,11 @@ public class ModificarEmpleo extends javax.swing.JFrame {
      */
     public ModificarEmpleo() {
         initComponents();
-        cargarCampos();
+        //cargarCampos();
         this.setLocationRelativeTo(null);
 
     }
-
+/*
     public void cargarCampos() {
         JTable x = Ofertante.jtblEmpleos;
         Integer f = Ofertante.fila;
@@ -42,7 +42,7 @@ public class ModificarEmpleo extends javax.swing.JFrame {
             jtxtPrecioMaximo.setText((String) x.getValueAt(f, 4));
         }
     }
-
+*/
     public boolean modificarEmpleo() {
         try {
             Connection connection = csql.conectar();
@@ -55,16 +55,16 @@ public class ModificarEmpleo extends javax.swing.JFrame {
                 jtxtNombre.requestFocus();
                 return false;
             } else {
-                String sql = "UPDATE EMPLEOS_DISPONIBLES SET NOM_EMP = " + jtxtNombre.getText().toUpperCase() + "',"
-                        + "DES_EMP = " + jtxaDescripcion.getText().toUpperCase() + ","
-                        + "PRE_MIN_EMP = " + jtxtPrecioMinimo.getText().toUpperCase() + ","
-                        + "PRE_MAX_EMP = " + jtxtPrecioMaximo.getText().toUpperCase() + " WHERE ID_EMP = " + Ofertante.identificacion;
+                String sql = "UPDATE EMPLEOS_DISPONIBLES SET NOM_EMP = '" + jtxtNombre.getText().toUpperCase() + "',"
+                        + "DES_EMP = '" + jtxaDescripcion.getText().toUpperCase() + "',"
+                        + "PRE_MIN_EMP = '" + jtxtPrecioMinimo.getText().toUpperCase() + "',"
+                        + "PRE_MAX_EMP = '" + jtxtPrecioMaximo.getText().toUpperCase() + "' WHERE ID_EMP = '" + Ofertante.identificacion+"'";
                 PreparedStatement psd = connection.prepareStatement(sql);
                 int n = psd.executeUpdate();
                 if (n > 0) {
                     JOptionPane.showMessageDialog(null, "¡Actualización Exitosa!");
                 }
-                mostrarEmpleos(Login.ced_login);
+                Ofertante.cargarDatosEmpleos();
                 return true;
             }
         } catch (SQLException ex) {
@@ -190,13 +190,14 @@ public class ModificarEmpleo extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -254,9 +255,9 @@ public class ModificarEmpleo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jtbnActualizar;
-    private javax.swing.JTextArea jtxaDescripcion;
-    private javax.swing.JTextField jtxtNombre;
-    private javax.swing.JTextField jtxtPrecioMaximo;
-    private javax.swing.JTextField jtxtPrecioMinimo;
+    public static javax.swing.JTextArea jtxaDescripcion;
+    public static javax.swing.JTextField jtxtNombre;
+    public static javax.swing.JTextField jtxtPrecioMaximo;
+    public static javax.swing.JTextField jtxtPrecioMinimo;
     // End of variables declaration//GEN-END:variables
 }

@@ -31,9 +31,11 @@ public class Ofertante extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         cargarDatosEmpleos();
         seleccionarEmpleo();
+        obtenerEmpleo();
     }
 
-    private void cargarDatosEmpleos() {
+    public static void cargarDatosEmpleos() {
+        JOptionPane.showMessageDialog(null, Login.ced_login);
         DefaultTableModel modeloTabla = GestorEmpleos.mostrarEmpleos(Login.ced_login);
         if (modeloTabla != null) {
             jtblEmpleos.setModel(modeloTabla);
@@ -49,6 +51,21 @@ public class Ofertante extends javax.swing.JFrame {
                 if (jtblEmpleos.getSelectedRow() != -1) {
                     fila = jtblEmpleos.getSelectedRow();
                     identificacion = (String) jtblEmpleos.getValueAt(fila, 0);
+                }
+            }
+        });
+    }
+    
+    public void obtenerEmpleo() {
+        jtblEmpleos.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (jtblEmpleos.getSelectedRow() != -1) {                                       
+                    fila = jtblEmpleos.getSelectedRow();
+                    ModificarEmpleo.jtxtNombre.setText(jtblEmpleos.getValueAt(fila, 1).toString());
+                    ModificarEmpleo.jtxaDescripcion.setText(jtblEmpleos.getValueAt(fila, 2).toString());
+                    ModificarEmpleo.jtxtPrecioMinimo.setText(jtblEmpleos.getValueAt(fila, 3).toString());
+                    ModificarEmpleo.jtxtPrecioMaximo.setText(jtblEmpleos.getValueAt(fila, 4).toString());
                 }
             }
         });
@@ -148,20 +165,22 @@ public class Ofertante extends javax.swing.JFrame {
 
     private void jbtnPublicarEmpleoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPublicarEmpleoActionPerformed
         if (!ie.isVisible()) {
-            ie.setVisible(true);
-            cargarDatosEmpleos();
+            ie.setVisible(true);          
         }
+        //cargarDatosEmpleos();
     }//GEN-LAST:event_jbtnPublicarEmpleoActionPerformed
 
     private void jbtnEliminarEmpleoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarEmpleoActionPerformed
         GestorEmpleos.eliminarEmpleo();
+        cargarDatosEmpleos();
     }//GEN-LAST:event_jbtnEliminarEmpleoActionPerformed
 
     private void jbtnModificarEmpleoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModificarEmpleoActionPerformed
+        obtenerEmpleo();
         if (!me.isVisible()) {
             me.setVisible(true);
-            cargarDatosEmpleos();
         }
+        
     }//GEN-LAST:event_jbtnModificarEmpleoActionPerformed
 
     /**
