@@ -19,6 +19,8 @@ import sql.ConexionSQL;
  */
 public class Login extends javax.swing.JFrame {
 
+    Principal p = new Principal();
+
     public static String ced_login;
 
     /**
@@ -53,26 +55,29 @@ public class Login extends javax.swing.JFrame {
             Statement stCli = cn.createStatement();
             ResultSet rsCli = stCli.executeQuery(sqlCli);
 
-            if (rsOfer.next()) {
-                ingreso = true;
-                JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
-                Ofertante of = new Ofertante();
-                of.setVisible(true);
-                this.dispose();
-                ced_login = rsOfer.getString("CED_USU");
+                if (rsOfer.next()) {
+                    ingreso = true;
+                    JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
+                    ced_login = rsOfer.getString("CED_USU");
+                    Ofertante of = new Ofertante();
+                    of.setVisible(true);
+                    this.dispose();
 
-            }
+                }
 
-            if (rsCli.next()) {
-                ingreso = true;
-                ced_login = rsCli.getString("CED_USU");
-                JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
+                if (rsOfer.next()) {
+                    ingreso = true;
+                    ced_login = rsCli.getString("CED_USU");
+                    JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
 
-                Empleos e = new Empleos();
-                e.setVisible(true);
-
-                this.dispose();
-            }
+                    Empleos e = new Empleos();
+                    e.setVisible(true);
+                    this.dispose();
+                }
+                
+                if(ingreso == false){
+                    JOptionPane.showMessageDialog(rootPane, "Ingrese un usuario y contraseña válidos");
+                }
 
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -102,6 +107,7 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jbtnSalir.setText("Salir");
+        jbtnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnSalirActionPerformed(evt);
@@ -109,6 +115,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         jbtnIngresar.setText("Ingresar");
+        jbtnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnIngresarActionPerformed(evt);
@@ -212,6 +219,8 @@ public class Login extends javax.swing.JFrame {
 
     private void jbtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSalirActionPerformed
         this.dispose();
+        p.setVisible(true);
+
     }//GEN-LAST:event_jbtnSalirActionPerformed
 
     /**
