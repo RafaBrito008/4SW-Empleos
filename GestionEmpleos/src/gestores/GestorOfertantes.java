@@ -5,23 +5,21 @@
 package gestores;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sql.ConexionSQL;
 
 /**
  *
- * @author sebas
+ * @author Rafael Brito, Dennis Bonilla y Sebastián Palate
  */
 public class GestorOfertantes {
 
     private static DefaultTableModel modeloTabla;
-    private static ConexionSQL csql = new ConexionSQL();
+    private static final ConexionSQL csql = new ConexionSQL();
 
     public static DefaultTableModel mostrarOfertantes() {
         try {
