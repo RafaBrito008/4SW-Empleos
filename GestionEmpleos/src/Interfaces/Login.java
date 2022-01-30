@@ -15,7 +15,7 @@ import sql.ConexionSQL;
 
 /**
  *
- * @author Rafa Brito
+ * @author Rafael Brito, Dennis Bonilla y Sebastián Palate
  */
 public class Login extends javax.swing.JFrame {
 
@@ -56,10 +56,10 @@ public class Login extends javax.swing.JFrame {
             if (rsOfer.next()) {
                 ingreso = true;
                 JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
+                ced_login = rsOfer.getString("CED_USU");
                 Ofertante of = new Ofertante();
                 of.setVisible(true);
                 this.dispose();
-                ced_login = rsOfer.getString("CED_USU");
 
             }
 

@@ -18,7 +18,7 @@ import sql.ConexionSQL;
 
 /**
  *
- * @author denni
+ * @author Rafael Brito, Dennis Bonilla y Sebastián Palate
  */
 public class Empleos extends javax.swing.JFrame {
 

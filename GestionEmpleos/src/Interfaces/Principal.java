@@ -6,7 +6,7 @@ package Interfaces;
 
 /**
  *
- * @author sebas
+ * @author Rafael Brito, Dennis Bonilla y Sebastián Palate
  */
 public class Principal extends javax.swing.JFrame {
 
