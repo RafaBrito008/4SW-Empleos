@@ -23,6 +23,7 @@ import sql.ConexionSQL;
  */
 public class Registro extends javax.swing.JFrame {
     Login login = new Login();
+    Principal principal = new Principal();
 
     /**
      * Creates new form Registro
@@ -356,6 +357,7 @@ public class Registro extends javax.swing.JFrame {
 
     private void jbtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelarActionPerformed
         this.dispose();
+        this.principal.setVisible(true);
     }//GEN-LAST:event_jbtnCancelarActionPerformed
 
     private void jtxtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtCedulaKeyTyped

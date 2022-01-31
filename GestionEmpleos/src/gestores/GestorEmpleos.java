@@ -68,7 +68,6 @@ public class GestorEmpleos {
             try {
                 Connection connection = csql.conectar();
                 String sql = "DELETE FROM EMPLEOS_DISPONIBLES WHERE ID_EMP = '" + Ofertante.identificacion+"'";
-                JOptionPane.showMessageDialog(null, sql);
 
                 PreparedStatement psd = connection.prepareStatement(sql);
                 int n = psd.executeUpdate();

@@ -4,17 +4,58 @@
  */
 package Interfaces;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import sql.ConexionSQL;
+
 /**
  *
  * @author sebas
  */
 public class Principal extends javax.swing.JFrame {
 
+    DefaultTableModel modelo = new DefaultTableModel();
+
+
     /**
      * Creates new form Pricipal
      */
     public Principal() {
         initComponents();
+        this.setLocation(600, 300);
+        cargarTablaEmpleosDisponibles();
+    }
+
+    public void cargarTablaEmpleosDisponibles() {
+        try {
+            String[] titulos = {"Id", "Nombre", "Descripcion", "Precio Min.", "Precio Max.", "Estado"};
+            String[] registros = new String[6];
+            modelo = new DefaultTableModel(null, titulos);
+            ConexionSQL cc = new ConexionSQL();
+            Connection cn = cc.conectar();
+            String sql = "";
+            sql = "select * from empleos_disponibles where EST_EMP='DISPONIBLE'";
+            Statement psd = cn.createStatement();
+            ResultSet rs = psd.executeQuery(sql);
+            while (rs.next()) {
+                registros[0] = rs.getString("ID_EMP");
+                registros[1] = rs.getString("NOM_EMP");
+                registros[2] = rs.getString("DES_EMP");
+                registros[3] = rs.getString("PRE_MIN_EMP");
+                registros[4] = rs.getString("PRE_MAX_EMP");
+                registros[5] = rs.getString("EST_EMP");
+                modelo.addRow(registros);
+            }
+            this.jtblEmpleos.setModel(modelo);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+
     }
 
     /**
@@ -28,7 +69,8 @@ public class Principal extends javax.swing.JFrame {
 
         jdkp = new javax.swing.JDesktopPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JtblEmpleos = new javax.swing.JTable();
+        jtblEmpleos = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmnuLogin = new javax.swing.JMenu();
         jmnuRegistro = new javax.swing.JMenu();
@@ -36,7 +78,7 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        JtblEmpleos.setModel(new javax.swing.table.DefaultTableModel(
+        jtblEmpleos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -47,25 +89,37 @@ public class Principal extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(JtblEmpleos);
+        jScrollPane1.setViewportView(jtblEmpleos);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("EMPLEOS DISPONIBLES");
 
         jdkp.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdkp.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdkpLayout = new javax.swing.GroupLayout(jdkp);
         jdkp.setLayout(jdkpLayout);
         jdkpLayout.setHorizontalGroup(
             jdkpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jdkpLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jdkpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jdkpLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jdkpLayout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addComponent(jLabel1)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         jdkpLayout.setVerticalGroup(
             jdkpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jdkpLayout.createSequentialGroup()
-                .addGap(63, 63, 63)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdkpLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         jmnuLogin.setText("Iniciar Sesión");
@@ -166,12 +220,13 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable JtblEmpleos;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JDesktopPane jdkp;
     private javax.swing.JMenu jmnuLogin;
     private javax.swing.JMenu jmnuRegistro;
     private javax.swing.JMenu jmnuSalir;
+    private javax.swing.JTable jtblEmpleos;
     // End of variables declaration//GEN-END:variables
 }

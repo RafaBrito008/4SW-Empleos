@@ -35,7 +35,6 @@ public class Ofertante extends javax.swing.JFrame {
     }
 
     public static void cargarDatosEmpleos() {
-        JOptionPane.showMessageDialog(null, Login.ced_login);
         DefaultTableModel modeloTabla = GestorEmpleos.mostrarEmpleos(Login.ced_login);
         if (modeloTabla != null) {
             jtblEmpleos.setModel(modeloTabla);
