@@ -198,7 +198,7 @@ public class Empleos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Buscar por precio minimo");
+        jLabel1.setText("Buscar por descripción");
 
         jbtnAceptarEmpleo.setText("ACEPTAR EMPLEO");
         jbtnAceptarEmpleo.addActionListener(new java.awt.event.ActionListener() {
@@ -286,7 +286,7 @@ public class Empleos extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
