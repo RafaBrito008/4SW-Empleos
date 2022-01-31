@@ -30,12 +30,12 @@
                   <Component id="jScrollPane1" min="-2" pref="696" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jbtnPublicarEmpleo" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbtnEliminarEmpleo" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbtnModificarEmpleo" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jbtnModificarEmpleo" max="32767" attributes="0"/>
+                  <Component id="jbtnEliminarEmpleo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jbtnPublicarEmpleo" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -64,6 +64,12 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="jbtnPublicarEmpleo">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Publicar Empleo"/>
       </Properties>
       <Events>
@@ -72,6 +78,12 @@
     </Component>
     <Component class="javax.swing.JButton" name="jbtnEliminarEmpleo">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Eliminar un Empleo"/>
       </Properties>
       <Events>
@@ -80,6 +92,12 @@
     </Component>
     <Component class="javax.swing.JButton" name="jbtnModificarEmpleo">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Modificar un Empleo"/>
       </Properties>
       <Events>

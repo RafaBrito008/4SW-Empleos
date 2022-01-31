@@ -214,6 +214,8 @@ public class Registro extends javax.swing.JFrame {
 
         jlblTitulo.setText("REGISTRO DE USUARIO");
 
+        jbtnRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jbtnRegistrar.setForeground(new java.awt.Color(102, 102, 102));
         jbtnRegistrar.setText("Registrar");
         jbtnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +224,8 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
+        jbtnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jbtnCancelar.setForeground(new java.awt.Color(102, 102, 102));
         jbtnCancelar.setText("Cancelar");
         jbtnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -287,7 +291,7 @@ public class Registro extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
                                 .addComponent(jtxtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbtnCancelar)))
