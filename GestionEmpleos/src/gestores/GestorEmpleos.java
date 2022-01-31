@@ -24,6 +24,12 @@ public class GestorEmpleos {
     private static final ConexionSQL csql = new ConexionSQL();
     private static DefaultTableModel modeloTabla;
 
+    /**
+     * Método para mostrar los empleos de un ofertante
+     *
+     * @param cedula
+     * @return
+     */
     public static DefaultTableModel mostrarEmpleos(String cedula) {
 
         try {
@@ -35,7 +41,7 @@ public class GestorEmpleos {
             Connection connection = csql.conectar();
 
             if (connection != null) {
-                String sql = "SELECT * FROM EMPLEOS_DISPONIBLES WHERE ID_OFE_EMP='" + cedula+"'";
+                String sql = "SELECT * FROM EMPLEOS_DISPONIBLES WHERE ID_OFE_EMP='" + cedula + "'";
                 Statement psd = connection.prepareStatement(sql);
                 ResultSet rs = psd.executeQuery(sql);
 
@@ -67,7 +73,7 @@ public class GestorEmpleos {
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             try {
                 Connection connection = csql.conectar();
-                String sql = "DELETE FROM EMPLEOS_DISPONIBLES WHERE ID_EMP = '" + Ofertante.identificacion+"'";
+                String sql = "DELETE FROM EMPLEOS_DISPONIBLES WHERE ID_EMP = '" + Ofertante.identificacion + "'";
 
                 PreparedStatement psd = connection.prepareStatement(sql);
                 int n = psd.executeUpdate();
