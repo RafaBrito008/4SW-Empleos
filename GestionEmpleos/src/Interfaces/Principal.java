@@ -4,17 +4,58 @@
  */
 package Interfaces;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import sql.ConexionSQL;
+
 /**
  *
  * @author sebas
  */
 public class Principal extends javax.swing.JFrame {
 
+    DefaultTableModel modelo = new DefaultTableModel();
+
+
     /**
      * Creates new form Pricipal
      */
     public Principal() {
         initComponents();
+        this.setLocation(600, 300);
+        cargarTablaEmpleosDisponibles();
+    }
+
+    public void cargarTablaEmpleosDisponibles() {
+        try {
+            String[] titulos = {"Id", "Nombre", "Descripcion", "Precio Min.", "Precio Max.", "Estado"};
+            String[] registros = new String[6];
+            modelo = new DefaultTableModel(null, titulos);
+            ConexionSQL cc = new ConexionSQL();
+            Connection cn = cc.conectar();
+            String sql = "";
+            sql = "select * from empleos_disponibles where EST_EMP='DISPONIBLE'";
+            Statement psd = cn.createStatement();
+            ResultSet rs = psd.executeQuery(sql);
+            while (rs.next()) {
+                registros[0] = rs.getString("ID_EMP");
+                registros[1] = rs.getString("NOM_EMP");
+                registros[2] = rs.getString("DES_EMP");
+                registros[3] = rs.getString("PRE_MIN_EMP");
+                registros[4] = rs.getString("PRE_MAX_EMP");
+                registros[5] = rs.getString("EST_EMP");
+                modelo.addRow(registros);
+            }
+            this.jtblEmpleos.setModel(modelo);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+
     }
 
     /**
@@ -28,15 +69,16 @@ public class Principal extends javax.swing.JFrame {
 
         jdkp = new javax.swing.JDesktopPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JtblEmpleos = new javax.swing.JTable();
+        jtblEmpleos = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jmnuLogin = new javax.swing.JMenu();
+        jmnuRegistro = new javax.swing.JMenu();
+        jmnuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        JtblEmpleos.setModel(new javax.swing.table.DefaultTableModel(
+        jtblEmpleos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -47,46 +89,62 @@ public class Principal extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(JtblEmpleos);
+        jScrollPane1.setViewportView(jtblEmpleos);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("EMPLEOS DISPONIBLES");
 
         jdkp.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdkp.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdkpLayout = new javax.swing.GroupLayout(jdkp);
         jdkp.setLayout(jdkpLayout);
         jdkpLayout.setHorizontalGroup(
             jdkpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jdkpLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jdkpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jdkpLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jdkpLayout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addComponent(jLabel1)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         jdkpLayout.setVerticalGroup(
             jdkpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jdkpLayout.createSequentialGroup()
-                .addGap(63, 63, 63)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdkpLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
-        jMenu1.setText("Iniciar Sesión");
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
+        jmnuLogin.setText("Iniciar Sesión");
+        jmnuLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmnuLoginMouseClicked(evt);
             }
         });
+        jMenuBar1.add(jmnuLogin);
 
-        jMenuItem1.setText("jMenuItem1");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+        jmnuRegistro.setText("Registrarse");
+        jmnuRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmnuRegistroMouseClicked(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenuBar1.add(jmnuRegistro);
 
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Salir");
-        jMenuBar1.add(jMenu2);
+        jmnuSalir.setText("Salir");
+        jmnuSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmnuSalirMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jmnuSalir);
 
         setJMenuBar(jMenuBar1);
 
@@ -106,14 +164,24 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-    Login login = new Login();
-    login.setVisible(true);
-    }//GEN-LAST:event_jMenu1ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jmnuLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmnuLoginMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        Login login = new Login();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmnuLoginMouseClicked
+
+    private void jmnuRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmnuRegistroMouseClicked
+        // TODO add your handling code here:
+        Registro registro = new Registro();
+        registro.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmnuRegistroMouseClicked
+
+    private void jmnuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmnuSalirMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jmnuSalirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -152,12 +220,13 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable JtblEmpleos;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JDesktopPane jdkp;
+    private javax.swing.JMenu jmnuLogin;
+    private javax.swing.JMenu jmnuRegistro;
+    private javax.swing.JMenu jmnuSalir;
+    private javax.swing.JTable jtblEmpleos;
     // End of variables declaration//GEN-END:variables
 }

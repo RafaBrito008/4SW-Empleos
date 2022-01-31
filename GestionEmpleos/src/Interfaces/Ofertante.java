@@ -4,14 +4,24 @@
  */
 package Interfaces;
 
+import Empleos.InsertarEmpleo;
+import Empleos.ModificarEmpleo;
 import gestores.GestorEmpleos;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author sebas
+ * @author Rafael Brito, Dennis Bonilla y Sebastián Palate
  */
 public class Ofertante extends javax.swing.JFrame {
+
+    private final InsertarEmpleo ie = new InsertarEmpleo();
+    public static Integer fila;
+    public static String identificacion;
+    private final ModificarEmpleo me = new ModificarEmpleo();
 
     /**
      * Creates new form Ofertante
@@ -20,11 +30,44 @@ public class Ofertante extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarDatosEmpleos();
+        seleccionarEmpleo();
+        obtenerEmpleo();
     }
 
-    private void cargarDatosEmpleos() {
-        DefaultTableModel modeloTabla = GestorEmpleos.mostrarEmpleos("1801");
-        jtblEmpleos.setModel(modeloTabla);
+    public static void cargarDatosEmpleos() {
+        DefaultTableModel modeloTabla = GestorEmpleos.mostrarEmpleos(Login.ced_login);
+        if (modeloTabla != null) {
+            jtblEmpleos.setModel(modeloTabla);
+        } else {
+            JOptionPane.showMessageDialog(null, "Error en la Tabla");
+        }
+    }
+
+    public void seleccionarEmpleo() {
+        jtblEmpleos.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (jtblEmpleos.getSelectedRow() != -1) {
+                    fila = jtblEmpleos.getSelectedRow();
+                    identificacion = (String) jtblEmpleos.getValueAt(fila, 0);
+                }
+            }
+        });
+    }
+    
+    public void obtenerEmpleo() {
+        jtblEmpleos.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (jtblEmpleos.getSelectedRow() != -1) {                                       
+                    fila = jtblEmpleos.getSelectedRow();
+                    ModificarEmpleo.jtxtNombre.setText(jtblEmpleos.getValueAt(fila, 1).toString());
+                    ModificarEmpleo.jtxaDescripcion.setText(jtblEmpleos.getValueAt(fila, 2).toString());
+                    ModificarEmpleo.jtxtPrecioMinimo.setText(jtblEmpleos.getValueAt(fila, 3).toString());
+                    ModificarEmpleo.jtxtPrecioMaximo.setText(jtblEmpleos.getValueAt(fila, 4).toString());
+                }
+            }
+        });
     }
 
     /**
@@ -39,25 +82,38 @@ public class Ofertante extends javax.swing.JFrame {
         jbtnPublicarEmpleo = new javax.swing.JButton();
         jbtnEliminarEmpleo = new javax.swing.JButton();
         jbtnModificarEmpleo = new javax.swing.JButton();
-        jbtnPreferencias = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblEmpleos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jbtnPublicarEmpleo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbtnPublicarEmpleo.setText("Publicar Empleo");
+        jbtnPublicarEmpleo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnPublicarEmpleo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnPublicarEmpleoActionPerformed(evt);
             }
         });
 
+        jbtnEliminarEmpleo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbtnEliminarEmpleo.setText("Eliminar un Empleo");
+        jbtnEliminarEmpleo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtnEliminarEmpleo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnEliminarEmpleoActionPerformed(evt);
+            }
+        });
 
+        jbtnModificarEmpleo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbtnModificarEmpleo.setText("Modificar un Empleo");
-
-        jbtnPreferencias.setText("Preferencias");
+        jbtnModificarEmpleo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtnModificarEmpleo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnModificarEmpleoActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel1.setText("Empleos Publicados ");
@@ -81,26 +137,21 @@ public class Ofertante extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbtnPreferencias))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtnPublicarEmpleo)
-                    .addComponent(jbtnEliminarEmpleo)
-                    .addComponent(jbtnModificarEmpleo))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbtnModificarEmpleo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtnEliminarEmpleo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtnPublicarEmpleo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtnPreferencias, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(61, Short.MAX_VALUE)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -118,9 +169,24 @@ public class Ofertante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnPublicarEmpleoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPublicarEmpleoActionPerformed
-        // TODO add your handling code here:
-        //GestorEmpleos.insertarEmpleo();
+        if (!ie.isVisible()) {
+            ie.setVisible(true);          
+        }
+        //cargarDatosEmpleos();
     }//GEN-LAST:event_jbtnPublicarEmpleoActionPerformed
+
+    private void jbtnEliminarEmpleoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarEmpleoActionPerformed
+        GestorEmpleos.eliminarEmpleo();
+        cargarDatosEmpleos();
+    }//GEN-LAST:event_jbtnEliminarEmpleoActionPerformed
+
+    private void jbtnModificarEmpleoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModificarEmpleoActionPerformed
+        obtenerEmpleo();
+        if (!me.isVisible()) {
+            me.setVisible(true);
+        }
+        
+    }//GEN-LAST:event_jbtnModificarEmpleoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,8 +228,7 @@ public class Ofertante extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtnEliminarEmpleo;
     private javax.swing.JButton jbtnModificarEmpleo;
-    private javax.swing.JButton jbtnPreferencias;
     private javax.swing.JButton jbtnPublicarEmpleo;
-    private javax.swing.JTable jtblEmpleos;
+    public static javax.swing.JTable jtblEmpleos;
     // End of variables declaration//GEN-END:variables
 }

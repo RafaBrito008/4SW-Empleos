@@ -15,9 +15,10 @@ import sql.ConexionSQL;
 
 /**
  *
- * @author Rafa Brito
+ * @author Rafael Brito, Dennis Bonilla y Sebastián Palate
  */
 public class Login extends javax.swing.JFrame {
+    Principal principal = new Principal();
 
     public static String ced_login;
 
@@ -45,7 +46,7 @@ public class Login extends javax.swing.JFrame {
             String sqlCli = "SELECT CED_USU, USERNAME_USU, (aes_decrypt(PASSWORD_USU, 'AES')), TIPO_USU FROM usuarios "
                     + "WHERE USERNAME_USU = '" + username + "' "
                     + "AND (aes_decrypt(PASSWORD_USU, 'AES')) = '" + password + "' "
-                    + "AND TIPO_USU = 'CLIENTE'";
+                    + "AND TIPO_USU = 'TRABAJADOR'";
 
             Statement stOfer = cn.createStatement();
             ResultSet rsOfer = stOfer.executeQuery(sqlOfer);
@@ -56,10 +57,10 @@ public class Login extends javax.swing.JFrame {
             if (rsOfer.next()) {
                 ingreso = true;
                 JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
+                ced_login = rsOfer.getString("CED_USU");
                 Ofertante of = new Ofertante();
                 of.setVisible(true);
                 this.dispose();
-                ced_login = rsOfer.getString("CED_USU");
 
             }
 
@@ -101,31 +102,36 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jbtnSalir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jbtnSalir.setForeground(new java.awt.Color(102, 102, 102));
         jbtnSalir.setText("Salir");
+        jbtnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnSalirActionPerformed(evt);
             }
         });
 
+        jbtnIngresar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jbtnIngresar.setForeground(new java.awt.Color(102, 102, 102));
         jbtnIngresar.setText("Ingresar");
+        jbtnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnIngresarActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuario:");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Contraseña:");
 
-        jtxtPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtPasswordActionPerformed(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("INICIO DE SESIÓN");
 
         jDesktopPane1.setLayer(jbtnSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -206,12 +212,9 @@ public class Login extends javax.swing.JFrame {
         iniciarSesion();
     }//GEN-LAST:event_jbtnIngresarActionPerformed
 
-    private void jtxtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtPasswordActionPerformed
-
-    }//GEN-LAST:event_jtxtPasswordActionPerformed
-
     private void jbtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSalirActionPerformed
         this.dispose();
+        this.principal.setVisible(true);
     }//GEN-LAST:event_jbtnSalirActionPerformed
 
     /**
