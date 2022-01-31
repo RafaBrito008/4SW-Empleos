@@ -112,7 +112,9 @@ public class ModificarEmpleo extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setText("Nuevo Empleo");
 
+        jtbnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jtbnActualizar.setText("Actualizar");
+        jtbnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jtbnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtbnActualizarActionPerformed(evt);

@@ -88,21 +88,27 @@ public class Ofertante extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jbtnPublicarEmpleo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbtnPublicarEmpleo.setText("Publicar Empleo");
+        jbtnPublicarEmpleo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnPublicarEmpleo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnPublicarEmpleoActionPerformed(evt);
             }
         });
 
+        jbtnEliminarEmpleo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbtnEliminarEmpleo.setText("Eliminar un Empleo");
+        jbtnEliminarEmpleo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnEliminarEmpleo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnEliminarEmpleoActionPerformed(evt);
             }
         });
 
+        jbtnModificarEmpleo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbtnModificarEmpleo.setText("Modificar un Empleo");
+        jbtnModificarEmpleo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnModificarEmpleo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnModificarEmpleoActionPerformed(evt);
@@ -135,11 +141,11 @@ public class Ofertante extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtnPublicarEmpleo)
-                    .addComponent(jbtnEliminarEmpleo)
-                    .addComponent(jbtnModificarEmpleo))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbtnModificarEmpleo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtnEliminarEmpleo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtnPublicarEmpleo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

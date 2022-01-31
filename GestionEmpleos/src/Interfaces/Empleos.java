@@ -200,14 +200,18 @@ public class Empleos extends javax.swing.JFrame {
 
         jLabel1.setText("Buscar por descripción");
 
+        jbtnAceptarEmpleo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbtnAceptarEmpleo.setText("ACEPTAR EMPLEO");
+        jbtnAceptarEmpleo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnAceptarEmpleo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnAceptarEmpleoActionPerformed(evt);
             }
         });
 
+        jbtnCancelarEmpleo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbtnCancelarEmpleo.setText("CANCELAR EMPLEO");
+        jbtnCancelarEmpleo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnCancelarEmpleo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnCancelarEmpleoActionPerformed(evt);

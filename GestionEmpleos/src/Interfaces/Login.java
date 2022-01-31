@@ -103,7 +103,7 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jbtnSalir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jbtnSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnSalir.setForeground(new java.awt.Color(102, 102, 102));
         jbtnSalir.setText("Salir");
         jbtnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +113,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         jbtnIngresar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jbtnIngresar.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnIngresar.setForeground(new java.awt.Color(102, 102, 102));
         jbtnIngresar.setText("Ingresar");
         jbtnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnIngresar.addActionListener(new java.awt.event.ActionListener() {

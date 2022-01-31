@@ -214,6 +214,7 @@ public class Registro extends javax.swing.JFrame {
 
         jlblTitulo.setText("REGISTRO DE USUARIO");
 
+        jbtnRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbtnRegistrar.setText("Registrar");
         jbtnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +223,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
+        jbtnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbtnCancelar.setText("Cancelar");
         jbtnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -287,7 +289,7 @@ public class Registro extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
                                 .addComponent(jtxtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbtnCancelar)))
@@ -328,7 +330,7 @@ public class Registro extends javax.swing.JFrame {
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jcbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnRegistrar)
                     .addComponent(jbtnCancelar))
