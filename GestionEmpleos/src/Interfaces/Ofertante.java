@@ -7,9 +7,12 @@ package Interfaces;
 import Empleos.InsertarEmpleo;
 import Empleos.ModificarEmpleo;
 import gestores.GestorEmpleos;
+<<<<<<< HEAD
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+=======
+>>>>>>> features
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,11 +21,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Ofertante extends javax.swing.JFrame {
 
+<<<<<<< HEAD
     private final InsertarEmpleo ie = new InsertarEmpleo();
     public static Integer fila;
     public static String identificacion;
     private final ModificarEmpleo me = new ModificarEmpleo();
 
+=======
+>>>>>>> features
     /**
      * Creates new form Ofertante
      */
@@ -30,8 +36,11 @@ public class Ofertante extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarDatosEmpleos();
+<<<<<<< HEAD
         seleccionarEmpleo();
         obtenerEmpleo();
+=======
+>>>>>>> features
     }
 
     public static void cargarDatosEmpleos() {
@@ -44,6 +53,7 @@ public class Ofertante extends javax.swing.JFrame {
         }
     }
 
+<<<<<<< HEAD
     public void seleccionarEmpleo() {
         jtblEmpleos.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -71,6 +81,8 @@ public class Ofertante extends javax.swing.JFrame {
         });
     }
 
+=======
+>>>>>>> features
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

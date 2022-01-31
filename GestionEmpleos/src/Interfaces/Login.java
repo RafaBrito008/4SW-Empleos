@@ -19,6 +19,8 @@ import sql.ConexionSQL;
  */
 public class Login extends javax.swing.JFrame {
 
+    Principal p = new Principal();
+
     public static String ced_login;
 
     /**
@@ -45,7 +47,7 @@ public class Login extends javax.swing.JFrame {
             String sqlCli = "SELECT CED_USU, USERNAME_USU, (aes_decrypt(PASSWORD_USU, 'AES')), TIPO_USU FROM usuarios "
                     + "WHERE USERNAME_USU = '" + username + "' "
                     + "AND (aes_decrypt(PASSWORD_USU, 'AES')) = '" + password + "' "
-                    + "AND TIPO_USU = 'CLIENTE'";
+                    + "AND TIPO_USU = 'TRABAJADOR'";
 
             Statement stOfer = cn.createStatement();
             ResultSet rsOfer = stOfer.executeQuery(sqlOfer);
@@ -53,6 +55,7 @@ public class Login extends javax.swing.JFrame {
             Statement stCli = cn.createStatement();
             ResultSet rsCli = stCli.executeQuery(sqlCli);
 
+<<<<<<< HEAD
             if (rsOfer.next()) {
                 ingreso = true;
                 JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
@@ -62,17 +65,31 @@ public class Login extends javax.swing.JFrame {
                 this.dispose();
 
             }
+=======
+                if (rsOfer.next()) {
+                    ingreso = true;
+                    JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
+                    ced_login = rsOfer.getString("CED_USU");
+                    Ofertante of = new Ofertante();
+                    of.setVisible(true);
+                    this.dispose();
+>>>>>>> features
 
-            if (rsCli.next()) {
-                ingreso = true;
-                ced_login = rsCli.getString("CED_USU");
-                JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
+                }
 
-                Empleos e = new Empleos();
-                e.setVisible(true);
+                if (rsCli.next()) {
+                    ingreso = true;
+                    ced_login = rsCli.getString("CED_USU");
+                    JOptionPane.showMessageDialog(rootPane, "Ingreso exitoso.");
 
-                this.dispose();
-            }
+                    Empleos e = new Empleos();
+                    e.setVisible(true);
+                    this.dispose();
+                }
+                
+                if(ingreso == false){
+                    JOptionPane.showMessageDialog(rootPane, "Ingrese un usuario y contraseña válidos");
+                }
 
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -102,6 +119,7 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jbtnSalir.setText("Salir");
+        jbtnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnSalirActionPerformed(evt);
@@ -109,6 +127,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         jbtnIngresar.setText("Ingresar");
+        jbtnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnIngresarActionPerformed(evt);
@@ -212,6 +231,8 @@ public class Login extends javax.swing.JFrame {
 
     private void jbtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSalirActionPerformed
         this.dispose();
+        p.setVisible(true);
+
     }//GEN-LAST:event_jbtnSalirActionPerformed
 
     /**

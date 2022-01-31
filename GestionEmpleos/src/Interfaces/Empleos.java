@@ -187,6 +187,7 @@ public class Empleos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jbtnAceptarEmpleo = new javax.swing.JButton();
         jbtnCancelarEmpleo = new javax.swing.JButton();
+        jtxtBusqueda = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblEmpleos = new javax.swing.JTable();
@@ -197,7 +198,7 @@ public class Empleos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Buscar");
+        jLabel1.setText("Buscar por descripción");
 
         jbtnAceptarEmpleo.setText("ACEPTAR EMPLEO");
         jbtnAceptarEmpleo.addActionListener(new java.awt.event.ActionListener() {
@@ -213,6 +214,12 @@ public class Empleos extends javax.swing.JFrame {
             }
         });
 
+        jtxtBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtxtBusquedaKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -220,11 +227,13 @@ public class Empleos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(147, 147, 147)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jtxtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jbtnAceptarEmpleo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jbtnCancelarEmpleo)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,7 +242,8 @@ public class Empleos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jbtnCancelarEmpleo)
-                    .addComponent(jbtnAceptarEmpleo))
+                    .addComponent(jbtnAceptarEmpleo)
+                    .addComponent(jtxtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -276,7 +286,7 @@ public class Empleos extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,6 +340,35 @@ public class Empleos extends javax.swing.JFrame {
         cancelarEmpleo();
     }//GEN-LAST:event_jbtnCancelarEmpleoActionPerformed
 
+    private void jtxtBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtBusquedaKeyTyped
+        // TODO add your handling code here:
+        try {
+            String[] titulos = {"Id", "Nombre", "Descripcion", "Precio Min.", "Precio Max.", "Estado"};
+            String[] registros = new String[6];
+            modelo = new DefaultTableModel(null, titulos);
+            ConexionSQL cc = new ConexionSQL();
+            Connection cn = cc.conectar();
+            String sql = "";
+            sql = "select * from empleos_disponibles where DES_EMP like '%"+jtxtBusqueda.getText()+"%'";
+            Statement psd = cn.createStatement();
+            ResultSet rs = psd.executeQuery(sql);
+            while (rs.next()) {
+                registros[0] = rs.getString("ID_EMP");
+                registros[1] = rs.getString("NOM_EMP");
+                registros[2] = rs.getString("DES_EMP");
+                registros[3] = rs.getString("PRE_MIN_EMP");
+                registros[4] = rs.getString("PRE_MAX_EMP");
+                registros[5] = rs.getString("EST_EMP");
+                modelo.addRow(registros);
+            }
+            jtblEmpleos.setModel(modelo);
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    
+    }//GEN-LAST:event_jtxtBusquedaKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -377,5 +416,6 @@ public class Empleos extends javax.swing.JFrame {
     private javax.swing.JButton jbtnCancelarEmpleo;
     private javax.swing.JTable jtblEmpleos;
     private javax.swing.JTable jtblMisEmpleos;
+    private javax.swing.JTextField jtxtBusqueda;
     // End of variables declaration//GEN-END:variables
 }
